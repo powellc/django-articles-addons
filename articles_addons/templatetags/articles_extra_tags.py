@@ -7,7 +7,7 @@ from django import template
 from django.conf import settings
 from django.db import models
 
-Article = models.get_model('aritlces', 'article')
+from articles.models import Article
 
 register = template.Library()
 
@@ -52,7 +52,7 @@ class GetArticlesNode(template.Node):
 
     def render(self, context):
         if self.tags:
-            articles = Article.live.filter(tags__name__in=self.tags)[:self.count]
+            articles = Article.objects.live().filter(tags__name__in=self.tags)[:self.count]
         else:
             articles = Article.live.all()[:self.count]
         context[self.var_name] = articles 
