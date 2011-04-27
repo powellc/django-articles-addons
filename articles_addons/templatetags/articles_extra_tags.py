@@ -39,7 +39,7 @@ def do_get_live_articles(parser, token):
     count = tags = var_name = None
     if argc == 4: t, count, a, var_name = args
     if argc == 6: t, count, g, tags, a, var_name = args
-    return GetArticleNode(count=count, tags=tags, var_name=var_name)
+    return GetArticlesNode(count=count, tags=tags, var_name=var_name)
 
 class GetArticlesNode(template.Node):
     def __init__(self, count, tags, var_name):
