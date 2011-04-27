@@ -36,7 +36,7 @@ def do_get_live_articles(parser, token):
     except AssertionError:
         raise template.TemplateSyntaxError('Invalid get_live_articles syntax.')
     # determine what parameters to use
-    count = tags = var_name = = None
+    count = tags = var_name = None
     if argc == 4: t, count, a, var_name = args
     if argc == 6: t, count, g, tags, a, var_name = args
     return GetArticleNode(count=count, tags=tags, var_name=var_name)
