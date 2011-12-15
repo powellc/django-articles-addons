@@ -1,4 +1,4 @@
-django.forms import ModelForm
+from django.forms import ModelForm
 
 class ArticleForm(ModelForm):
   class Meta:
