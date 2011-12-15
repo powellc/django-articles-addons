@@ -1,10 +1,13 @@
 # Adding URLs for django-articles CRUD
+from django.contrib.auth.decorators import login_required, permission_required
 from django.conf.urls.defaults import *
+from django.views.generic import ListView 
 from articles_addons.views import ArticleUpdateView, ArticleCreateView, ArticleDeleteView
+from articles.views import display_article
 
 urlpatterns = patterns('',
-    url(r'^all/$', views.display_article, name='articles_list_articles'),
-    url(r'^add/$', ArticleCreateView, name='articles_create_article'),
-    url(r'^(?P<year>\d{4})/(?P<slug>.*)/update/$', ArticleUpdateView, name='articles_update_article'),
-    url(r'^(?P<year>\d{4})/(?P<slug>.*)/delete/$', ArticleDeleteView, name='articles_delete_article'),
+    url(r'^all/$', login_required(ListView.as_view()), name='articles_list_articles'),
+    url(r'^add/$', login_required(ArticleCreateView.as_view()), name='articles_create_article'),
+    url(r'^(?P<year>\d{4})/(?P<slug>.*)/update/$', loginrequired(ArticleUpdateView.as_view()), name='articles_update_article'),
+    url(r'^(?P<year>\d{4})/(?P<slug>.*)/delete/$', loginrequired(ArticleDeleteView.as_view)), name='articles_delete_article'),
 )
